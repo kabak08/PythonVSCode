@@ -5,7 +5,7 @@ url = "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/reso
 
 data = pd.read_csv(url)
 len(data) #shows us we have 161,127 rows of data
-data.head #shows us the top efew rows of our data
+data.head #shows us the top few rows of our data
 names = data.columns.values #shows us the column names
 list(names)
 
