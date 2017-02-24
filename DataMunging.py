@@ -9,6 +9,9 @@ data.head #shows us the top few rows of our data
 names = data.columns.values #shows us the column names
 list(names)
 
+#finding the shooting data
+shootings = data[data['SHOOTING'] == 'Y']
+data = shootings
 
 from bokeh.io import output_file, show
 from bokeh.models import GeoJSONDataSource
@@ -20,7 +23,7 @@ from bokeh.sampledata.sample_geojson import geojson
 
 geo_source = GeoJSONDataSource(geojson=geojson)
 
-p = figure()
+p = figure(toolbar_location = "above", plot_width = 600, plot_height = 300)
 p.circle(x='x', y='y', alpha=0.9, source=geo_source)
 output_file("geojson.html")
 show(p)
@@ -36,11 +39,10 @@ from bokeh.models import (
   GMapPlot, GMapOptions, ColumnDataSource, Circle, DataRange1d, PanTool, WheelZoomTool, BoxSelectTool
 )
 
-map_options = GMapOptions(lat=42.3601, lng=-71.0589, map_type="roadmap", zoom=11)
+map_options = GMapOptions(lat=42.3601, lng=-71.0589, map_type="roadmap", zoom=13)
 
 plot = GMapPlot(
-    x_range=DataRange1d(), y_range=DataRange1d(), map_options=map_options
-)
+    x_range=DataRange1d(), y_range=DataRange1d(), map_options=map_options, plot_width = 1000, plot_height = 600)
 plot.title.text = "Boston"
 
 # For GMaps to function, Google requires you obtain and enable an API key:
@@ -57,6 +59,18 @@ source = ColumnDataSource(
     )
 )
 
+circle = Circle(x="lon", y="lat", size=15, fill_color="blue", fill_alpha=0.8, line_color=None)
+plot.add_glyph(source, circle)
+
+plot.add_tools(PanTool(), WheelZoomTool(), BoxSelectTool())
+output_file("gmap_plot.html")
+#Map data ©2017 Google
+#Terms of Use
+#Report a map error
+from bokeh.io import output_file, show
+from bokeh.models import (
+  GMapPlot, GMapOptions, ColumnDataSource, Circle, DataRange1d, PanTool, WheelZoomTool, BoxSelectTool
+)…
 circle = Circle(x="lon", y="lat", size=15, fill_color="blue", fill_alpha=0.8, line_color=None)
 plot.add_glyph(source, circle)
 
