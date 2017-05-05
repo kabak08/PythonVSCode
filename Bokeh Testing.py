@@ -69,8 +69,7 @@ output_file("gmap_plot.html")
 #Report a map error
 from bokeh.io import output_file, show
 from bokeh.models import (
-  GMapPlot, GMapOptions, ColumnDataSource, Circle, DataRange1d, PanTool, WheelZoomTool, BoxSelectTool
-)…
+  GMapPlot, GMapOptions, ColumnDataSource, Circle, DataRange1d, PanTool, WheelZoomTool, BoxSelectTool)
 circle = Circle(x="lon", y="lat", size=15, fill_color="blue", fill_alpha=0.8, line_color=None)
 plot.add_glyph(source, circle)
 
